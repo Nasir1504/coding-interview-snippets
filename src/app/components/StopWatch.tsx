@@ -20,13 +20,12 @@ export default function StopWatch() {
     if (countRef.current) {
       clearInterval(countRef.current);
       countRef.current = null;
-    } (countRef.current)
+    }
   }
 
   const handleReset = () => {
     handleStop()
     setCount(0)
-    countRef.current = null;
   }
 
   return (

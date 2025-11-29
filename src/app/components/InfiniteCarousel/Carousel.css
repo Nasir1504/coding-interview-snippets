@@ -1,0 +1,44 @@
+.carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.carousel-wrapper:active {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: auto;
+  /* Disable smooth scroll for manual drag */
+  scrollbar-width: none;
+  /* Hide scrollbar */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Content repeated twice */
+.carousel-content {
+  display: flex;
+}
+
+.item {
+  min-width: 200px;
+  height: 140px;
+  margin: 10px;
+  background: #007bff;
+  color: #fff;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+
+}

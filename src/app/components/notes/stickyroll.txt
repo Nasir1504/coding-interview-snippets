@@ -1,0 +1,80 @@
+"use client"
+
+import { useState } from "react";
+import { Stickyroll } from "@stickyroll/react";
+import { ReactLenis, useLenis } from 'lenis/react'
+
+
+export default function Home() {
+
+  const [pProg, setPProg] = useState({
+    progress: "",
+    page: ""
+  })
+
+  const lenis = useLenis((lenis) => {
+    // called every scroll
+    // console.log(lenis)
+    //  console.log(lenis.scroll)       // example: direct property
+    // console.log(lenis.velocity)     // another direct property
+    // console.log(lenis.options)      // nested object
+
+
+  })
+
+
+  const sValue = (pProg.progress + pProg.page) - 1
+  const sValue2 = (pProg.progress + pProg.page) - 2
+
+
+  return (
+    <div className="relative">
+      <ReactLenis root />
+
+
+      <div className="fixed top-10 text-center z-10 flex-col">
+
+        <p >{pProg.progress} {"->"} {pProg.page}</p>
+        <p className="">{sValue}</p>
+        <p className="">{sValue2}</p>
+      </div>
+
+
+
+      <div className="w-full h-[300px] bg-[#511515ff] " />
+
+      <Stickyroll
+        pages={3}
+        factor={3}
+        onProgress={(progress, page) => {
+          setPProg({
+            progress: progress,
+            page: page
+          })
+        }}
+      >
+        <div>
+
+          <div className="absolute w-[80px] h-[80px] bg-[#6e1b1bff] overflow-hidden"
+
+            style={{
+              transform: sValue > 0 && `translate(${Math.min(100, (sValue * 100))}px)`
+            }}
+          >{sValue * 100}</div>
+          <div className="absolute w-[80px] h-[80px] bg-[#7c6767ff]"
+
+            style={{
+              transform: sValue2 > 0 && `translate(${sValue2 * 200}px)`
+            }}
+          />
+
+
+        </div>
+      </Stickyroll>
+
+      <div className="w-full h-[300px] bg-[#511515ff] " />
+
+
+    </div>
+  );
+}
